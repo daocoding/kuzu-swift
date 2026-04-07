@@ -1141,6 +1141,9 @@ let package = Package(
                 .define("ZSTDLIB_VISIBILITY", to: ""),
                 .define("__SWIFT__"),
                 .define("zstd")
+            ],
+            cSettings: [
+                .define("yyjson_api", to: "__attribute__((visibility(\"hidden\")))"),
             ]
         ),
         .testTarget(
