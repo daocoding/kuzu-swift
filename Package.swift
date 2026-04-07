@@ -1061,7 +1061,8 @@ let package = Package(
                 "kuzu/third_party/thrift/transport/TTransportException.cpp",
                 "kuzu/third_party/utf8proc/utf8proc.cpp",
                 "kuzu/third_party/utf8proc/utf8proc_wrapper.cpp",
-                "kuzu/third_party/yyjson/src/yyjson.c",
+                // yyjson.c excluded — provided by mlx-swift to avoid duplicate symbols
+                // "kuzu/third_party/yyjson/src/yyjson.c",
                 "kuzu/third_party/zstd/common/entropy_common.cpp",
                 "kuzu/third_party/zstd/common/error_private.cpp",
                 "kuzu/third_party/zstd/common/fse_decompress.cpp",
@@ -1142,9 +1143,7 @@ let package = Package(
                 .define("__SWIFT__"),
                 .define("zstd")
             ],
-            cSettings: [
-                .define("yyjson_api", to: "__attribute__((visibility(\"hidden\")))"),
-            ]
+            // yyjson symbols provided by mlx-swift — no cSettings needed
         ),
         .testTarget(
             name: "KuzuTests",
